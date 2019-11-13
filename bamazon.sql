@@ -10,6 +10,7 @@ CREATE TABLE products (
   department_name VARCHAR(45) NULL,
   price DECIMAL (10, 2) NULL,
   stock_quantity INTEGER(100) NULL,
+  product_sales DECIMAL (10, 2) NULL,
   PRIMARY KEY (id)
 );
 
@@ -33,9 +34,3 @@ INSERT INTO products (product_name, department_name, price, stock_quantity)
 VALUES ("computer", "electronics", 1500.00, 55);
 INSERT INTO products (product_name, department_name, price, stock_quantity)
 VALUES ("sox", "clothing", 10.00, 355);
-
--- INSERT INTO products (flavor, price, quantity)
--- VALUES ("chocolate", 3.10, 120);
-
--- INSERT INTO products (flavor, price, quantity)
--- VALUES ("strawberry", 3.25, 75);

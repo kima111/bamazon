@@ -73,17 +73,19 @@ function askHowMany(productName){
             }
             else{
                 var newQuantity = results[0].stock_quantity - answer.productQuantity;
+                var productSales = results[0].product_sales + (answer.productQuantity*results[0].price)
                 console.log("Your total purchase was: $" + (answer.productQuantity * results[0].price))
-                updatedQuantity(productName, newQuantity)
+                updatedQuantity(productName, newQuantity, productSales)
             }
         })
     })
 }
 
-function updatedQuantity(productName, quantity){
+function updatedQuantity(productName, quantity, productSales){
     connection.query(
         "UPDATE products SET ? WHERE ?",[{
-            stock_quantity: quantity
+            stock_quantity: quantity,
+            product_sales: productSales
         },
     {
             product_name: productName

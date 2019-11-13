@@ -129,7 +129,8 @@ function addToInventory(item, amount){
     managerStartMenu();
 }
 function addNewProduct(){
-    
+    connection.query("SELECT * FROM departments", function(err, dResults){
+        if(err) throw err;
     inquirer.prompt([
         {
             name: "productName",
@@ -138,8 +139,15 @@ function addNewProduct(){
         },
         {
             name: "departmentName",
-            type: "input",
-            message: "What is the department the product belongs to?"
+            type: "list",
+            message: "What is the department the product belongs to?",
+            choices: function(){
+                var choiceArray = [];
+                for(var i=0; i<dResults.length;i++){
+                    choiceArray.push(dResults[i].department_name);
+                }
+                return choiceArray;
+            }
         },
         {
             name: "productPrice",
@@ -163,5 +171,7 @@ function addNewProduct(){
         )
         managerStartMenu();
     })
+    })
 }
+
 
