@@ -14,8 +14,6 @@ var connection = mysql.createConnection({
     supervisorStartMenu();
   });
 
-
-
 function supervisorStartMenu() {
     inquirer
       .prompt([
@@ -44,7 +42,6 @@ function viewProductSalesByDepartment(){
 
     var query = "SELECT departments.department_id, departments.department_name, departments.over_head_costs, SUM(products.product_sales) AS 'product_sales' FROM departments LEFT JOIN products ON(products.department_name = departments.department_name) GROUP BY department_name ";
   
-
     connection.query(query,function(err, response) {
         if(err) throw err;
       console.log("department id| department name | over head costs | product sales | total profit")
@@ -54,9 +51,7 @@ function viewProductSalesByDepartment(){
         }
       supervisorStartMenu();
     })
-    
     }
-
 function createNewDepartment(){
     inquirer
       .prompt([
@@ -83,10 +78,8 @@ function createNewDepartment(){
         function(err){
         if (err) throw err;
         supervisorStartMenu();
-
         }
-        )}
-      
+        )} 
         )
     
 }
